@@ -1,0 +1,37 @@
+# Local data and outputs
+data_local/
+Paper1_Actionable_Issue_Mining/data/
+Paper1_Actionable_Issue_Mining/results/
+outputs/
+results/
+logs/
+checkpoints/
+cache/
+
+# Model weights and caches
+models_local/
+models/
+hf_cache/
+**/best_model/
+*.safetensors
+*.pt
+*.pth
+*.bin
+
+# Secrets and local overrides
+.env
+.env.*
+config_local.private.py
+*.key
+
+# Python / IDE
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

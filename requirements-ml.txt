@@ -1,0 +1,8 @@
+-r requirements.txt
+transformers>=4.45,<6
+huggingface_hub>=0.25
+safetensors>=0.4
+sentencepiece>=0.2
+accelerate>=1.0
+# Install PyTorch separately using the official selector for your OS/CUDA setup:
+# https://pytorch.org/get-started/locally/

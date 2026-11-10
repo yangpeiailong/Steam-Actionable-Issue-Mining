@@ -1,0 +1,40 @@
+{
+  "project": "Steam Actionable Issue Mining",
+  "source_archive": "Steam_Paper1_Code_Source.zip",
+  "included_python_scripts": [
+    "config_local.py",
+    "paper1_issue_mining/03_issue_detection/01_prepare_stage1_sample.py",
+    "paper1_issue_mining/03_issue_detection/02_llm_prelabel_stage1.py",
+    "paper1_issue_mining/03_issue_detection/03_prepare_stage1_manual_review.py",
+    "paper1_issue_mining/03_issue_detection/04_prepare_stage1_gold.py",
+    "paper1_issue_mining/03_issue_detection/05_train_stage1_classifier.py",
+    "paper1_issue_mining/03_issue_detection/06_apply_stage1_classifier.py",
+    "paper1_issue_mining/03_issue_detection/07_prepare_stage1_disagreement_audit.py",
+    "paper1_issue_mining/03_issue_detection/08_mine_stage1_hard_negatives.py",
+    "paper1_issue_mining/03_issue_detection/09_train_stage1_deberta_hardneg.py",
+    "paper1_issue_mining/03_issue_detection/10_apply_stage1_deberta_hardneg_v2.py",
+    "paper1_issue_mining/04_stage2_classification/07_prepare_stage2_sample.py",
+    "paper1_issue_mining/04_stage2_classification/08_llm_prelabel_stage2.py",
+    "paper1_issue_mining/04_stage2_classification/11_llm_prelabel_stage2_prompt_v2.py",
+    "paper1_issue_mining/04_stage2_classification/13_prepare_stage2_distillation_candidates.py",
+    "paper1_issue_mining/04_stage2_classification/13_train_stage2_distillation.py",
+    "paper1_issue_mining/04_stage2_classification/14_teacher_label_stage2_distillation.py",
+    "paper1_issue_mining/04_stage2_classification/15_build_stage2_distillation_expansion_pool.py",
+    "paper1_issue_mining/04_stage2_classification/16_teacher_label_stage2_expansion_1000.py",
+    "paper1_issue_mining/04_stage2_classification/17_evaluate_stage2_test_once.py",
+    "paper1_issue_mining/04_stage2_classification/17_evaluate_stage2_test_once_architecture_extension.py",
+    "paper1_issue_mining/04_stage2_classification/19_infer_stage2_full_corpus.py",
+    "paper1_issue_mining/04_stage2_classification/21_analyze_stage2_population_v1.py",
+    "paper1_issue_mining/04_stage2_classification/22_test_stage2_game_differences.py",
+    "paper1_issue_mining/04_stage2_classification/23_extract_stage2_case_examples_v1.py",
+    "paper1_issue_mining/04_stage2_classification/24_analyze_event_window_v1.py",
+    "scripts/audit_public_release.py"
+  ],
+  "excluded": [
+    "historical duplicate scripts",
+    "unsuccessful minority-enrichment experiments",
+    "temporary diagnostics",
+    "review-level source data and annotation files",
+    "model weights, predictions, logs, and local caches"
+  ]
+}

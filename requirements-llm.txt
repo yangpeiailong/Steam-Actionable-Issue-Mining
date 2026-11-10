@@ -1,0 +1,4 @@
+-r requirements.txt
+openai>=1.40
+langchain-openai>=0.2
+tenacity>=8.2
