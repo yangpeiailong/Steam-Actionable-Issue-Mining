@@ -34,6 +34,19 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+# Publication typography: use the installed Times New Roman font.
+plt.rcParams.update({
+    "font.family": "Times New Roman",
+    "font.serif": ["Times New Roman"],
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Times New Roman",
+    "mathtext.it": "Times New Roman:italic",
+    "mathtext.bf": "Times New Roman:bold",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
+})
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
@@ -308,7 +321,6 @@ def plot_cities(daily: pd.DataFrame, out: Path) -> None:
     fig, ax = plt.subplots(figsize=(11, 4.8))
     ax.plot(x["day"], x["n_stage1_positive_reviews"], marker="o", linewidth=1.3)
     ax.axvspan(EVENT_START, EVENT_END + pd.Timedelta(days=1), alpha=0.15)
-    ax.set_title("Cities: Skylines — daily Stage-1-positive review volume")
     ax.set_ylabel("Review count")
     ax.set_xlabel("Date")
     ax.grid(True, alpha=0.25)
@@ -328,7 +340,6 @@ def plot_cities(daily: pd.DataFrame, out: Path) -> None:
     for col, label in series:
         ax.plot(x["day"], x[col] * 100, marker="o", linewidth=1.2, label=label)
     ax.axvspan(EVENT_START, EVENT_END + pd.Timedelta(days=1), alpha=0.15, label="Event window")
-    ax.set_title("Cities: Skylines — daily predicted issue prevalence")
     ax.set_ylabel("Share of Stage-1-positive reviews (%)")
     ax.set_xlabel("Date")
     ax.legend(frameon=False, ncol=2)

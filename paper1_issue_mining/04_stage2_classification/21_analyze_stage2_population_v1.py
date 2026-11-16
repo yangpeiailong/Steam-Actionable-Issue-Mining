@@ -35,6 +35,19 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Publication typography: use the installed Times New Roman font.
+plt.rcParams.update({
+    "font.family": "Times New Roman",
+    "font.serif": ["Times New Roman"],
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Times New Roman",
+    "mathtext.it": "Times New Roman:italic",
+    "mathtext.bf": "Times New Roman:bold",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
+})
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
@@ -442,7 +455,6 @@ def make_figures(primary: dict, robustness: dict, audit_by_game: pd.DataFrame, o
     fig, ax = plt.subplots(figsize=(10.5, 7))
     ax.barh(overall["issue_domain"], overall["share_of_population"] * 100)
     ax.set_xlabel("% of Stage-1-positive primary population (n=7,634)")
-    ax.set_title("Overall prevalence of actionable issue domains")
     ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
     fig.savefig(out / "fig01_overall_issue_domain_prevalence.png", dpi=300)
@@ -456,7 +468,6 @@ def make_figures(primary: dict, robustness: dict, audit_by_game: pd.DataFrame, o
     ax.set_xticklabels(ISSUE_LABELS, rotation=55, ha="right", fontsize=8)
     ax.set_yticks(range(len(wide.index)))
     ax.set_yticklabels(wide.index, fontsize=9)
-    ax.set_title("Issue-domain prevalence by game")
     ax.set_xlabel("Issue domain")
     ax.set_ylabel("Game")
     cb = fig.colorbar(im, ax=ax)
@@ -480,7 +491,6 @@ def make_figures(primary: dict, robustness: dict, audit_by_game: pd.DataFrame, o
     ax.set_ylim(lo, hi)
     ax.set_xlabel("RoBERTa T2 issue-bearing share (%)")
     ax.set_ylabel("DeBERTa T3 issue-bearing share (%)")
-    ax.set_title("Cross-model robustness of game-level issue prevalence")
     ax.grid(alpha=0.25)
     fig.tight_layout()
     fig.savefig(out / "fig03_model_robustness_game_issue_share.png", dpi=300)
@@ -491,7 +501,6 @@ def make_figures(primary: dict, robustness: dict, audit_by_game: pd.DataFrame, o
     fig, ax = plt.subplots(figsize=(10, 5.5))
     ax.barh(ag["game"], ag["manual_issue_share_in_audit"] * 100)
     ax.set_xlabel("% manually labelled as issue among Stage-1-negative audit rows")
-    ax.set_title("Manual audit of 400 Stage-1-negative Gold reviews")
     ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
     fig.savefig(out / "fig04_stage1_negative_gold_audit_by_game.png", dpi=300)

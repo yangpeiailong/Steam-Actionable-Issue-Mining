@@ -49,6 +49,19 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Publication typography: use the installed Times New Roman font.
+plt.rcParams.update({
+    "font.family": "Times New Roman",
+    "font.serif": ["Times New Roman"],
+    "mathtext.fontset": "custom",
+    "mathtext.rm": "Times New Roman",
+    "mathtext.it": "Times New Roman:italic",
+    "mathtext.bf": "Times New Roman:bold",
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
+})
 from scipy.stats import fisher_exact, chi2, kruskal, binomtest
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -450,7 +463,7 @@ def save_figures(prev_all: pd.DataFrame, source_mix: pd.DataFrame, outdir: Path)
                         marker=marker, capsize=3, linewidth=1.4, label=scope)
     games = sorted(sub.game.unique())
     ax.set_xticks(np.arange(len(games))); ax.set_xticklabels([g.split("_",1)[-1] for g in games], rotation=35, ha="right")
-    ax.set_ylabel("Issue-bearing reviews (%)"); ax.set_title("Issue-bearing review share by game and data source")
+    ax.set_ylabel("Issue-bearing reviews (%)")
     ax.legend(frameon=False); ax.grid(axis="y", alpha=.25); fig.tight_layout()
     fig.savefig(outdir/"fig05_issue_any_by_game_source.png", dpi=220); plt.close(fig)
 
@@ -461,7 +474,7 @@ def save_figures(prev_all: pd.DataFrame, source_mix: pd.DataFrame, outdir: Path)
     ax.barh(y, sm.gold_share*100, label="Gold manual")
     ax.barh(y, sm.model_share*100, left=sm.gold_share*100, label="Model inferred")
     ax.set_yticks(y); ax.set_yticklabels([g.split("_",1)[-1] for g in sm.game])
-    ax.set_xlabel("Share of primary population (%)"); ax.set_title("Gold vs model-inferred composition by game")
+    ax.set_xlabel("Share of primary population (%)")
     ax.legend(frameon=False); ax.grid(axis="x", alpha=.2); fig.tight_layout()
     fig.savefig(outdir/"fig06_source_composition_by_game.png", dpi=220); plt.close(fig)
 
@@ -473,7 +486,6 @@ def save_figures(prev_all: pd.DataFrame, source_mix: pd.DataFrame, outdir: Path)
         im=ax.imshow(mat.values*100, aspect="auto")
         ax.set_xticks(np.arange(len(mat.columns))); ax.set_xticklabels([g.split("_",1)[-1] for g in mat.columns],rotation=35,ha="right")
         ax.set_yticks(np.arange(len(mat.index))); ax.set_yticklabels(mat.index)
-        ax.set_title("Issue-domain prevalence by game (valid assigned rows, %) ")
         fig.colorbar(im,ax=ax,label="Prevalence (%)"); fig.tight_layout()
         fig.savefig(outdir/"fig07_issue_domain_game_heatmap_inferential.png",dpi=220);plt.close(fig)
 
